@@ -1,0 +1,14 @@
+{% extends 'tc_auth/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Judo humare saath
+{% endblock title %}
+
+{% block content %}
+    <form action="" method="POST">
+        {{ form|crispy }}
+        <button type="submit">Signin</button>
+    </form>
+{% endblock content %}

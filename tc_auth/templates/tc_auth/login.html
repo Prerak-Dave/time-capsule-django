@@ -1,0 +1,19 @@
+{% extends 'tc_auth/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Kaun ho tum
+{% endblock title %}
+
+{% block content %}
+    <form action="" method="POST">
+        {{ form|crispy }}
+        <button type="submit">Login</button>
+    </form>
+    {% if exception %}
+        <div class="errors">
+            <p>{{ exception }}</p>
+        </div>
+    {% endif %}
+{% endblock content %}

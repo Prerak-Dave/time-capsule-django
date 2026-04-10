@@ -37,3 +37,5 @@ class TemplateTests(TestCase):
         
         self.assertIn('<form',rendered)
         self.assertIn('<p>Wrong',rendered)
+        
+    def 

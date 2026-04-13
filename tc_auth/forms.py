@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
+from crispy_forms.helper import FormHelper
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model, authenticate
 
@@ -12,6 +13,11 @@ class UserLogin(forms.Form):
     password = forms.CharField(
         widget = forms.PasswordInput(attrs={"class": "form-control"})
     )
+    
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_tag = False
         
     def clean(self):
         cleaned_data = super().clean()
@@ -34,6 +40,11 @@ class UserSignin(UserCreationForm):
         model = get_user_model()
         fields = ['email', 'password1', 'password2']
         required = ['email']
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_tag = False
 
     def clean_email(self):
         email =  self.cleaned_data['email']

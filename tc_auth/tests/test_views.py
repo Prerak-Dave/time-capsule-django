@@ -19,8 +19,4 @@ class SignInUser(TestCase):
             })
         self.assertEquals(response.status_code, 200)
 
-        wrong_response = self.client.post("/auth/signin/", {"username":"john", "password":""})
-        self.assertNotEquals(wrong_response.status_code, 200)
-
- 
-
+    

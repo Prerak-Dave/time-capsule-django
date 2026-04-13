@@ -9,7 +9,7 @@ def login_user(request):
         form = UserLogin(request.POST)
         user = authenticate(request, email = request.POST['email'], password = request.POST['password'])
         if user is not None:
-            login(request, user)            
+            login(request, user)        
     else:
         form = UserLogin()
     

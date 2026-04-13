@@ -9,10 +9,7 @@ def login_user(request):
         form = UserLogin(request.POST)
         user = authenticate(request, email = request.POST['email'], password = request.POST['password'])
         if user is not None:
-            login(request, user)
-        else:
-            return render(request, 'tc_auth/login.html', {'form':form, 'exception': ValidationError("Wrong credentials")})
-            
+            login(request, user)            
     else:
         form = UserLogin()
     
@@ -22,11 +19,7 @@ def signin_user(request):
     if request.method == 'POST':
         form = UserSignin(request.POST)
         if form.is_valid():
-            form.save()
-        else:
-            return render(request, 'tc_auth/signin.html', {'form':form})
-            
-            
+            form.save()          
     else:
         form = UserSignin()
 

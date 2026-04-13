@@ -9,12 +9,10 @@
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit">Login</button>
-    </form>
-    {% if exception %}
-        <div class="errors">
-            <p>{{ exception }}</p>
+        {% crispy form %}
+        <div class="auth-btns">
+            <input type="submit" class="btn btn-primary" value="Login">
+            <a href="{% url 'auth:signin' %}" class="btn btn-secondary">Register</a>
         </div>
-    {% endif %}
+    </form>
 {% endblock content %}

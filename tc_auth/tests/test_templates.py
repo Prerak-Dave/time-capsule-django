@@ -33,9 +33,7 @@ class TemplateTests(TestCase):
         
     def test_login_form_template_error_renders(self):
         template = get_template('tc_auth/login.html')
-        rendered = template.render({'form':UserLoginForm(),'exception':Exception("Wrong creds")})
+        rendered = template.render({'form':UserLoginForm()})
         
         self.assertIn('<form',rendered)
-        self.assertIn('<p>Wrong',rendered)
-        
-    def 
+        self.assertIn("<div class='errors'",rendered)

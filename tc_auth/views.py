@@ -2,17 +2,16 @@ from django.shortcuts import render
 from .forms import UserLogin, UserSignin
 from django.contrib.auth import login, authenticate
 from django.core.exceptions import ValidationError
-from django.http import HttpResponseBadRequest
 
 
 def login_user(request):
     if request.method == 'POST':
         form = UserLogin(request.POST)
-        user = authenticate(request, request.POST['email'], request.POST['password'])
+        user = authenticate(request, email = request.POST['email'], password = request.POST['password'])
         if user is not None:
             login(request, user)
         else:
-            return render(request, 'tc_auth/login.html', {'form':form, 'exception': ValidationError("Wrong crednetials")})
+            return render(request, 'tc_auth/login.html', {'form':form, 'exception': ValidationError("Wrong credentials")})
             
     else:
         form = UserLogin()
@@ -25,8 +24,8 @@ def signin_user(request):
         if form.is_valid():
             form.save()
         else:
-            print(form.errors)
-            return HttpResponseBadRequest()
+            return render(request, 'tc_auth/signin.html', {'form':form})
+            
             
     else:
         form = UserSignin()
